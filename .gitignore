@@ -8,9 +8,8 @@
 node_modules/
 dist/
 
-# Generated image derivatives (rebuild with: npm run images)
-public/images/*.avif
-public/images/*.webp
+# AVIF/WebP derivatives are generated with `npm run images`, but they are
+# committed because clean GitHub Actions checkouts must include deployable assets.
 
 # Generated: copied from src/content/sentences.json by scripts/sync-data.mjs
 public/data/

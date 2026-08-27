@@ -35,6 +35,13 @@ const routes: RouteRecordRaw[] = [
     meta: { title: '我的三体 · Threebody.space' },
   },
   {
+    path: '/simulation',
+    name: 'simulation',
+    component: () => import('@/views/SimulationView.vue'),
+    // bare：不套页头页脚，这一页的内容就是整个视口
+    meta: { title: '三体运动模拟 · Threebody.space', bare: true },
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('@/views/AboutView.vue'),

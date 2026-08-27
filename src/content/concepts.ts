@@ -20,7 +20,7 @@ export interface Plate {
 }
 
 export const HERO = {
-  title: '三体',
+  title: '三体宇宙',
   /** 17px 灰，一句说清这是什么站 */
   standfirst:
     '一个粉丝做的站。用一次从人体到可观测宇宙的滚动，讲《三体》讲了什么，以及《我的三体》这十年。',

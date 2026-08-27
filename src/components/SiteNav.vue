@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  * 站点标记与导航。
- * 标记 = 一条真算出来的 8 字轨道 + 「三体」二字（见 SiteMark.vue）。
+ * 标记 = 一条真算出来的 8 字轨道 + 「三体宇宙」四字（见 SiteMark.vue）。
  * 导航是四条纯文字链接，没有 pill，没有背景色。
  */
 import { RouterLink } from 'vue-router'
@@ -13,7 +13,7 @@ import SiteMark from './SiteMark.vue'
     <div class="nav__inner">
       <RouterLink to="/" class="nav__mark">
         <SiteMark :size="26" class="nav__mark-glyph" title="三体：8 字形三体轨道" />
-        <span class="nav__mark-cn">三体</span>
+        <span class="nav__mark-cn">三体宇宙</span>
         <span class="nav__mark-domain">Threebody.space</span>
       </RouterLink>
 
@@ -113,7 +113,7 @@ import SiteMark from './SiteMark.vue'
   }
 
   .nav__mark-domain {
-    /* 域名在窄屏让位给导航，标记只留「三体」两个字 */
+    /* 域名在窄屏让位给导航，标记只留「三体宇宙」四个字 */
     display: none;
   }
 
