@@ -1,0 +1,130 @@
+/* 章节骨架与进出场。段与段之间靠图片明暗和大留白分隔，没有分割线，没有底色变化。 */
+
+.page {
+  position: relative;
+}
+
+/* 章节间 160+（窄屏 96），这是全站最大的一档间距，用来切叙事段落 */
+.section {
+  position: relative;
+  padding: var(--s-6) var(--s-4);
+}
+
+.section--flush {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.wrap--narrow {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* 标题与它自己的正文离得近（32），与上一节离得远（160）。 */
+.section__head + .section__body {
+  margin-top: var(--s-4);
+}
+
+/* 进出场：opacity + 8px 上移，320ms。全站只有这一个进场动效。 */
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity var(--dur-reveal) var(--ease),
+    transform var(--dur-reveal) var(--ease);
+  will-change: opacity, transform;
+}
+
+.reveal--slow {
+  transition-duration: var(--dur-reveal-slow);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* 减弱动态效果：位移与视差全部关掉，只留淡入。 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transform: none;
+    transition: opacity var(--dur-reveal) var(--ease);
+  }
+}
+
+/* 满幅图：图片本身够黑，直接叠白字，不加遮罩渐变层。 */
+.plate {
+  position: relative;
+  width: 100%;
+}
+
+.plate__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*
+  章节配图的取景框。
+  素材是 3:2（1536×1024），在高窗口里按原比例铺满宽度就会超过一屏高，
+  把下面的标题和正文整个顶出首屏——读者只看到一张图，以为页面没有文字。
+  所以给它一个高度上限：宽屏取 62vh，窄屏放宽到 52vh（竖屏更缺高度），
+  超出的部分用 object-fit: cover 居中裁掉。
+*/
+.frame {
+  position: relative;
+  width: 100%;
+  height: clamp(240px, 56vw, 62vh);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.frame > picture,
+.frame > .plate__img,
+.frame > picture > .plate__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 720px) {
+  .frame {
+    height: clamp(200px, 62vw, 52vh);
+  }
+}
+
+.plate--full {
+  min-height: 100svh;
+  display: grid;
+}
+
+.plate--full > .plate__img,
+.plate--full > picture {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  min-height: 100svh;
+  object-fit: cover;
+}
+
+.plate--full > picture > .plate__img {
+  min-height: 100svh;
+}
+
+.plate__over {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: center;
+  padding: var(--s-5) var(--s-4);
+}
+
+figcaption {
+  margin-top: var(--s-3);
+}

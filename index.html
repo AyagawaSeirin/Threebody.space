@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三体 · Threebody.space</title>
+    <meta
+      name="description"
+      content="一个《三体》粉丝站。用一次从人体尺度到可观测宇宙的滚动讲这套书的世界观，收录 423 条书摘，并记录《我的三体》动画的四季十年。"
+    />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="color-scheme" content="dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Threebody.space" />
+    <meta property="og:title" content="三体 · Threebody.space" />
+    <meta
+      property="og:description"
+      content="一个《三体》粉丝站。从人体尺度滚到可观测宇宙，423 条书摘，以及《我的三体》的四季十年。"
+    />
+    <meta property="og:image" content="/images/og-card.jpg" />
+    <meta property="og:image:width" content="1536" />
+    <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="几乎全黑的画面，下方一道行星弧光，上方三点星光。" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      首屏 LCP 是开场那张图，但只有 / 这一条路由用它——
+      直接进 /sentences 时预载它就是白下一份，浏览器也会报「preloaded but not used」。
+      所以由 main.ts 按当前路由决定要不要插这个 preload。
+    -->
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

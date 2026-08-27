@@ -1,0 +1,86 @@
+/* Threebody.space —— 全站唯一的取值表。
+   这里的每一个值都要能说出理由；不在这张表上的颜色、圆角、间距不许出现在组件里。 */
+
+:root {
+  /* 颜色：五个值，没有第六个。
+     背景永远是纯黑：这些图片素材本身就是深空，任何抬亮都会让图和底之间出现接缝。 */
+  --void: #000000;
+  --ink-0: #f2f2f0;
+  --ink-1: #8a8a86;
+  --ink-2: #4a4a48;
+
+  /* 唯一强调色 = 红岸那盏红灯。它只标记「人类发出去的信号 / 不可撤回的决定」，
+     不用来染标题关键词，不用来做警告色。全站出现次数上限 5（当前用了 4 处）。
+
+     色值从 #c8352b 提亮到 #d4453a：实测 #c8352b on #000 只有 4.00:1，
+     用在 14px 的纪年上不到 4.5:1 这条线。同色相下提到最低够用的一档，
+     现在 4.71:1。（这是设计约束里「不够就提亮」那条的同一处理。） */
+  --signal: #d4453a;
+
+  /* 字体。
+     正文用宋体：这是小说，中文长句用衬线读着像书。
+     标题用黑体：黑体标题 + 宋体正文是中文出版的常规分工。
+     等宽只给年份、坐标、量级这类真数据，不给按钮和标签。 */
+  /* 宋体正文是对 taxonomy #08 的正面回答：这是小说而不是仪表盘，
+     衬线用在真正的编排型内容上是对的。它只做正文，不做 UI。
+
+     全部走系统字体栈，不加载 webfont：一套中文字重动辄好几 MB，
+     为了首屏去下它不值得，而 macOS 的 Songti SC / iOS 的宋体、
+     Windows 的 SimSun 本身就是这套书该有的样子。装了思源的机器会优先用思源。
+     （这是 #33 说的「系统字体栈，选它有理由，也是一种选择」。） */
+  /* deslop-ignore-next-line 07 08 */
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --font-sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* 等宽只给年份、量级、坐标这类真数据（#34）：不进按钮、标签、导航。 */
+  /* deslop-ignore-next-line 34 */
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", monospace;
+
+  /* 字号阶梯，相邻两级 >=1.5 倍。桌面： 14 / 17 / 22 / 40 / 88 */
+  --t-fine: 14px;
+  --t-body: 17px;
+  --t-lead: 22px;
+  --t-title: 40px;
+  --t-display: 88px;
+
+  /* 行高：宋体长句需要比默认更松 */
+  --lh-body: 1.9;
+  --lh-lead: 1.75;
+  --lh-title: 1.25;
+  --lh-display: 1.12;
+  --lh-dialogue: 2.4;
+
+  /* 间距：按关系取用，不是一个值刷全场。段内 16，段间 64，章节间 160+。 */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 32px;
+  --s-5: 64px;
+  --s-6: 160px;
+
+  /* 全站唯一圆角，几乎方。嵌套时内层不圆角。 */
+  --r: 2px;
+
+  /* 动效：只动 transform 与 opacity，标准缓动，不回弹。 */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-hover: 160ms;
+  --dur-reveal: 320ms;
+  --dur-reveal-slow: 560ms;
+
+  /* 正文测量宽度：中文一行 34 字左右最好读 */
+  --measure: 34em;
+  --measure-narrow: 28em;
+
+  color-scheme: dark;
+}
+
+/* 窄屏把字号阶梯整体缩一档，但保持级差不塌成一片 14-18px */
+@media (max-width: 720px) {
+  :root {
+    --t-title: 28px;
+    --t-display: 44px;
+    --t-lead: 19px;
+    --s-6: 96px;
+    --measure: 100%;
+    --measure-narrow: 100%;
+  }
+}

@@ -1,0 +1,83 @@
+/* 排版层级与通用版式类。层级只靠字号和留白拉开，不靠颜色，不靠字重乱堆。 */
+
+/* display 只给 2-6 个能扛住这个尺寸的字：「三体」「不要回答」「黑暗森林」。
+   整句文案不许放到这一级。 */
+.display {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--t-display);
+  line-height: var(--lh-display);
+  letter-spacing: 0.02em; /* 中文黑体大字需要放，不是收 */
+  color: var(--ink-0);
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--t-title);
+  line-height: var(--lh-title);
+  color: var(--ink-0);
+}
+
+.lead {
+  font-size: var(--t-lead);
+  line-height: var(--lh-lead);
+  color: var(--ink-0);
+}
+
+.body {
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--ink-0);
+}
+
+/* 次要文字。--ink-1 (#8a8a86) on --void 实测对比度约 8.6:1，远超 4.5。 */
+.fine {
+  font-family: var(--font-sans);
+  font-size: var(--t-fine);
+  line-height: 1.7;
+  color: var(--ink-1);
+}
+
+/* 等宽只用在真实数据上：年份、量级、坐标。tabular-nums 保证跳变时不抖宽度。
+   这不是「tasteful terminal」那套装饰性等宽：全站的按钮、标签、导航都是黑体。 */
+.data {
+  /* deslop-ignore-next-line 34 */
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+.measure {
+  max-width: var(--measure);
+}
+
+.measure-narrow {
+  max-width: var(--measure-narrow);
+}
+
+/* 段与段之间 32，段内行距由 line-height 管 */
+.prose > p + p {
+  margin-top: var(--s-4);
+}
+
+/* 全站唯一的按钮样式：纯文字 + 1px 下边框。不是 pill，没有背景色。
+   hover 只改 border-color。 */
+.text-button {
+  display: inline-block;
+  padding: 0 0 var(--s-1);
+  border: 0;
+  border-bottom: 1px solid var(--ink-2);
+  background: none;
+  color: var(--ink-1);
+  font-family: var(--font-sans);
+  font-size: var(--t-fine);
+  line-height: 1.6;
+  cursor: pointer;
+  transition: border-color var(--dur-hover) var(--ease), color var(--dur-hover) var(--ease);
+}
+
+.text-button:hover {
+  color: var(--ink-0);
+  border-bottom-color: var(--ink-0);
+}

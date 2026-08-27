@@ -1,0 +1,22 @@
+# Local image-generation LLM credentials
+.env.imagegen.local
+
+# Cached upstream data for scripts/build-sentences.mjs
+.cache/
+
+# Build output & deps
+node_modules/
+dist/
+
+# Generated image derivatives (rebuild with: npm run images)
+public/images/*.avif
+public/images/*.webp
+
+# Generated: copied from src/content/sentences.json by scripts/sync-data.mjs
+public/data/
+
+# Playwright MCP scratch output
+.playwright-mcp/
+
+# Single-file preview build
+dist-standalone/
