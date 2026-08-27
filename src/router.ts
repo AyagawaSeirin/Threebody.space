@@ -20,7 +20,7 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: () => import('@/views/HomeView.vue'),
-    meta: { title: '三体 · Threebody.space' },
+    meta: { title: '三体宇宙 · Threebody.space' },
   },
   {
     path: '/sentences',
