@@ -11,7 +11,7 @@
  * 改步数只是让同样精度的积分走得快慢不同，物理不变。
  */
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { useReducedMotion } from '@/composables/useReducedMotion'
 import {
   CHAOS_SEEDS,
@@ -28,6 +28,16 @@ import {
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 const reduced = useReducedMotion()
+const route = useRoute()
+
+/**
+ * ?zen=1 —— 禅模式：隐藏全部文字与控件，只留满屏画布，适合当壁纸。
+ * 键盘仍然有效（R / 空格 / 方向键），只是画面上没有任何提示。
+ */
+const zen = computed(() => {
+  const v = route.query.zen
+  return v != null && v !== '0' && v !== 'false'
+})
 
 /** 满屏取景比页内那个松一点：视口大，留白不至于显空 */
 const VIEW_R = 2.1
@@ -213,8 +223,8 @@ onBeforeUnmount(() => {
       ></canvas>
     </div>
 
-    <!-- 说明与控件压在画布上，不遮挡中间的运动 -->
-    <div class="sim__head">
+    <!-- 说明与控件压在画布上，不遮挡中间的运动。禅模式整块隐去，只留画布 -->
+    <div v-if="!zen" class="sim__head">
       <h1 class="sim__title">三体运动模拟</h1>
       <p class="fine sim__note">
         三个质点摆成不规则三角形、从静止释放，此后只受彼此的引力。轨迹是实时算出来的。
@@ -222,7 +232,7 @@ onBeforeUnmount(() => {
       </p>
     </div>
 
-    <div class="sim__panel">
+    <div v-if="!zen" class="sim__panel">
       <div class="sim__group">
         <span class="fine sim__label">速度</span>
         <div class="sim__speeds">
