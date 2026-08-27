@@ -231,11 +231,17 @@ function draw(ctx: CanvasRenderingContext2D, w: number, h: number, dpr: number) 
     }
   }
 
-  // 三个质点：实心小方块。方形而不是圆点，和全站的直角语言一致。
+  /*
+    三个质点画成圆。
+    --r: 2px 那条直角规范管的是 UI 容器（卡片、输入框、按钮），
+    用意是避开 pill 和毛玻璃那一套；这里画的不是 UI，是天体——
+    这一节的标题就叫「三颗太阳」，把太阳画成方块反而是没有含义的风格化。
+  */
   ctx.fillStyle = '#f2f2f0'
   for (const b of bodies) {
-    const s = 3
-    ctx.fillRect(Math.round(px(b.x) - s / 2), Math.round(py(b.y) - s / 2), s, s)
+    ctx.beginPath()
+    ctx.arc(px(b.x), py(b.y), 2, 0, Math.PI * 2)
+    ctx.fill()
   }
 }
 

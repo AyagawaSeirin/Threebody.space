@@ -128,11 +128,18 @@ function draw(c: CanvasRenderingContext2D) {
     }
   }
 
-  // 质点：满屏下画到 6px，按质量微调（1.05 / 1 / 0.95 三档看得出差别）
+  /*
+    三个质点画成圆——它们是恒星，不是 UI 元件（详见 ThreeBodyCanvas.vue 的同一处注释）。
+    半径按质量分三档（1.05 / 1 / 0.95）。
+    档位之间要差够一个像素：3 和 3.5 光栅化后都是 6×6，看不出区别，
+    所以取 5 / 4 / 3——实测 bbox 分别是 10×10 / 8×8 / 6×6。
+  */
   c.fillStyle = '#f2f2f0'
   for (const b of bodies) {
-    const s = b.m > 1.02 ? 7 : b.m < 0.98 ? 5 : 6
-    c.fillRect(Math.round(px(b.x) - s / 2), Math.round(py(b.y) - s / 2), s, s)
+    const r = b.m > 1.02 ? 5 : b.m < 0.98 ? 3 : 4
+    c.beginPath()
+    c.arc(px(b.x), py(b.y), r, 0, Math.PI * 2)
+    c.fill()
   }
 }
 
