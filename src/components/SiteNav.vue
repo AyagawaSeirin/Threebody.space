@@ -2,7 +2,7 @@
 /**
  * 站点标记与导航。
  * 标记 = 一条真算出来的 8 字轨道 + 「三体宇宙」四字（见 SiteMark.vue）。
- * 导航是四条纯文字链接，没有 pill，没有背景色。
+ * 导航是五条纯文字链接，没有 pill，没有背景色。
  */
 import { RouterLink } from 'vue-router'
 import SiteMark from './SiteMark.vue'
@@ -21,6 +21,7 @@ import SiteMark from './SiteMark.vue'
         <RouterLink to="/">首页</RouterLink>
         <RouterLink to="/sentences">书摘</RouterLink>
         <RouterLink to="/works">我的三体</RouterLink>
+        <RouterLink to="/guestbook">留言</RouterLink>
         <RouterLink to="/about">关于</RouterLink>
       </nav>
     </div>
@@ -118,7 +119,14 @@ import SiteMark from './SiteMark.vue'
   }
 
   .nav__links {
-    gap: var(--s-3);
+    gap: var(--s-2);
+  }
+}
+
+@media (max-width: 400px) {
+  /* 加入第五个入口后，极窄屏只收起图形标记，站名与全部导航仍完整保留。 */
+  .nav__mark-glyph {
+    display: none;
   }
 }
 </style>

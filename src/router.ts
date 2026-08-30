@@ -14,7 +14,7 @@ declare const __THREEBODY_HASH_ROUTER__: boolean | undefined
 const useHash =
   typeof __THREEBODY_HASH_ROUTER__ !== 'undefined' && __THREEBODY_HASH_ROUTER__
 
-// 首页同步载入（它是 LCP 所在），其余三页按需分块
+// 各页按需分块，避免首页加载书摘、留言板等页面代码
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -46,6 +46,12 @@ const routes: RouteRecordRaw[] = [
     name: 'about',
     component: () => import('@/views/AboutView.vue'),
     meta: { title: '关于 · Threebody.space' },
+  },
+  {
+    path: '/guestbook',
+    name: 'guestbook',
+    component: () => import('@/views/GuestbookView.vue'),
+    meta: { title: '留言板 · Threebody.space' },
   },
   { path: '/:pathMatch(.*)*', redirect: '/' },
 ]

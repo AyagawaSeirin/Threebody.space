@@ -15,6 +15,8 @@ const REPO_URL = 'https://github.com/AyagawaSeirin/Threebody.space'
         Threebody.space · 站主
         <a :href="OWNER_URL" rel="noopener noreferrer" target="_blank">綾川星凛</a>
         · 本站为粉丝二创，非官方 ·
+        <RouterLink to="/guestbook">留言</RouterLink>
+        ·
         <a :href="REPO_URL" rel="noopener noreferrer" target="_blank">源码</a>
       </p>
       <p class="fine foot__line">
